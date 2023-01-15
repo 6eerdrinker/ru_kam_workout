@@ -1,0 +1,126 @@
+### Получение списка всех ингредиентов
+GET http://localhost:8080/ingredient
+
+### Получение нужного ингредиента из списка по id
+GET http://localhost:8080/ingredient/0
+
+### Добавление ингредиента 1
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Творог",
+  "amount": 350,
+  "unit": "грамм"}
+
+### Добавление ингредиента 2
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Куриное яйцо",
+  "amount": 2,
+  "unit": "шт."}
+
+### Добавление ингредиента 3
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Пшеничная мука",
+  "amount": 6,
+  "unit": "ст.л."}
+
+### Добавление ингредиента 4
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Сахар",
+  "amount": 2,
+  "unit": "ст.л."}
+
+### Добавление ингредиента 5
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Специи",
+  "amount": 0,
+  "unit": "по вкусу"}
+
+### Добавление ингредиента 6
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Консервированная фасоль",
+  "amount": 400,
+  "unit": "грамм"}
+
+### Добавление ингредиента 7
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Лимон",
+  "amount": 1,
+  "unit": "шт."}
+
+### Добавление ингредиента 8
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Чеснок",
+  "amount": 2,
+  "unit": "зубчика"}
+
+### Добавление ингредиента 9
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Оливковое масло",
+  "amount": 50,
+  "unit": "мл."}
+
+### Добавление ингредиента 10
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Рукола",
+  "amount": 100,
+  "unit": "грамм"}
+
+### Добавление ингредиента 11
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Творожный сыр",
+  "amount": 200,
+  "unit": "грамм"}
+
+### Добавление ингредиента 12
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+
+{"ingredientName": "Красный лук",
+  "amount": 50,
+  "unit": "грамм"}
+
+### Редактирование ингредиента
+PUT http://localhost:8080/ingredient/2
+Content-Type: application/json
+
+{"ingredientName": "Красный лук test",
+  "amount": 55,
+  "unit": "грамм"}
+
+### Удаление ингредиента
+DELETE http://localhost:8080/ingredient/0
+
+### Скачивание всех ингредиентов в Json-файле
+GET http://localhost:8080/ingredient/download
+
+### Импорт Json-файла
+POST http://localhost:8080/ingredient/import
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="ingredients"; filename="importIngredients.json"
+Content-Type: application/json
+
+< ./importIngredients.json
+--WebAppBoundary--
