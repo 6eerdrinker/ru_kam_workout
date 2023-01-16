@@ -2,7 +2,6 @@ package com.example.ru_kam_workout.controller;
 
 import com.example.ru_kam_workout.model.Recipe;
 import com.example.ru_kam_workout.service.RecipeService;
-import com.example.ru_kam_workout.service.impl.RecipeServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -84,7 +83,7 @@ public class RecipeController {
                             }
                     ),
                     @ApiResponse(
-                            responseCode = "404",
+                            responseCode = "400",
                             description = "Рецепта с данным идентификатором не найдено!",
                             content = {}
                     )
@@ -115,7 +114,7 @@ public class RecipeController {
                             }
                     ),
                     @ApiResponse(
-                            responseCode = "404",
+                            responseCode = "400",
                             description = "Рецепта с данным идентификатором не найдено!",
                             content = {}
                     )
@@ -145,7 +144,7 @@ public class RecipeController {
                             }
                     ),
                     @ApiResponse(
-                            responseCode = "404",
+                            responseCode = "400",
                             description = "Рецепта с данным идентификатором не найдено!",
                             content = {}
                     )
@@ -179,7 +178,45 @@ public class RecipeController {
             description = "Json-файл с измененным списком рецептов и изменениями " +
                     "в самих рецептах, замещает прежний Json-файл на жестком диске."
     )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Изменения в рецептах выполнены успешно!",
+                            content = {@Content(mediaType = "application/jason")
+                            })
+            })
+
     public void importRecipes(MultipartFile recipes) {
         recipeService.importRecipes(recipes);
+    }
+
+    @GetMapping("/export")
+    @Operation(
+            summary = "СКАЧИВАНИЕ ВСЕХ РЕЦЕПТОВ",
+            description = "Все рецепты описаны в текстовом формате в одном файле"
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Скачивание рецептов выполнено успешно!",
+                            content = {@Content(mediaType = "application/txt")}),
+                    @ApiResponse(responseCode = "500",
+                    description = "Во время выполнения запроса произошла ошибка на сервере!")
+
+            })
+    public ResponseEntity<byte[]> exportTxt() {
+
+        byte[] bytes = recipeService.exportTxt();
+        if (bytes == null) {
+            return ResponseEntity.internalServerError().build();
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_PLAIN)
+                .contentLength(bytes.length)
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; fileName=\"info.txt\"")
+                .body(bytes);
     }
 }

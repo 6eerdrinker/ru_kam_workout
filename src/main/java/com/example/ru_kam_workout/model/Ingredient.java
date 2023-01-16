@@ -13,6 +13,8 @@ public class Ingredient {
 
     private  String unit;
 
-   // private List<Ingredient> ingredients;
-
+    @Override
+    public String toString() {
+        return ingredientName + " - " + amount + " " + unit;
+    }
 }
