@@ -113,7 +113,7 @@ Content-Type: application/json
       "amount": 0,
       "unit": "по вкусу"},
     {"ingredientName": "Лимон",
-      "amount": 0.5,
+      "amount": 1,
       "unit": "шт."},
     {"ingredientName": "Мята",
       "amount": 0,
@@ -186,7 +186,7 @@ Content-Type: application/json
       "amount": 0,
       "unit": "по вкусу"},
     {"ingredientName": "Сода",
-      "amount": 0.5,
+      "amount": 1,
       "unit": "ч.л."},
     {"ingredientName": "Сахарная пудра с ванилью",
       "amount": 0,
@@ -256,3 +256,6 @@ Content-Type: application/json
 
 < ./importRecipes.json
 --WebAppBoundary--
+
+### Скачивание всех рецептов
+GET http://localhost:8080/recipe/export

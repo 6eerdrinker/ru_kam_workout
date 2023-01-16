@@ -1,0 +1,11 @@
+%recipeName%
+
+Время приготовления: %preparingTime% минут.
+
+Ингредиенты:
+
+%ingredients%
+
+Инструкция по приготовлению:
+
+%cookingSteps%
